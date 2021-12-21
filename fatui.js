@@ -3,42 +3,15 @@ $(document).ready(function () {
     let isValid = false;
     let xField = document.getElementById("x_value");
     const error = document.querySelector('#x_value+span.error');
+    let array = Array.prototype.slice.call(document.getElementsByName("y_value"));
 
-    checkX();
-    let yField = getY();
-
-    $("form").on("submit", function (event) {
-        event.preventDefault();
-        console.log("submitted");
-
-        if (!isValid) {
-            return;
-        }
-
-        // console.log($(this).serialize());
-
-        $.ajax({
-            type: "POST",
-            url: "/script.php",
-            data: {
-                'x_value': xField,
-                'y_value': yField,
-                'r_value': $('.set_r')
-            },
-            // beforeSend: function () {
-            //     console.log(this.data);
-            // },
-            dataType: 'json',
-            success: function () {
-                console.log("console");
-            },
-            error: function () {
-                console.log("error");
-            }
+    let y_var;
+    for (let i = 0; i < array.length; ++i) {
+        array[i].addEventListener('click', function () {
+            y_var = parseInt(array[i].value);
+            console.log(y_var);
         })
-        return true;
-    });
-
+    }
 
     function isValidValue(node) {
         return node.validity.valid;
@@ -57,16 +30,7 @@ $(document).ready(function () {
                 event.preventDefault();
             }
         });
-
-        // form.addEventListener('submit', function (event){
-        //     if(!xField.validity.valid) {
-        //         showMessage();
-        //     }
-        //     event.preventDefault();
-        // });
-
     }
-
 
 
     function showMessage() {
@@ -86,28 +50,29 @@ $(document).ready(function () {
         error.className = 'error active';
     }
 
-    // function getYValue() {
-    //     let y_value = $('.set_y').val();
-    //     isYButtonOnClick = true;
-    //     console.log(y_value);
-    // }
+    checkX();
+    $("form").on("submit", function (event) {
+        event.preventDefault();
+        console.log("submitted");
+        // let vars = $(this).serialize() + "&y_value=" + analyzeYButton(yValArray);
 
-    function getYValue () {
-        $('.set_y').on('click', function () {
-            let my_y = $('.set_y').val();
-            console.log(my_y);
-            console.log('I am click on the button!');
-        })
-    }
+        if (!isValid) {
+            return;
+        }
 
-    function getY() {
-        let y_value;
-        $('.set_y').on('click', function () {
-            y_value = $(this).val();
-            console.log(y_value);
+        $.ajax({
+            type: "POST",
+            url: "/script.php",
+            data: $(this).serialize() + "&y_value=",
+            success: function () {
+                console.log("success");
+            },
+            error: function () {
+                console.log("error");
+            }
         })
-        return y_value;
-    }
+        return true;
+    });
 
 
 });
