@@ -1,22 +1,21 @@
 $(document).ready(function () {
 
+    let y;
     let isValid = false;
     let xField = document.getElementById("x_value");
     const error = document.querySelector('#x_value+span.error');
     let array = Array.prototype.slice.call(document.getElementsByName("y_value"));
 
-    let y_var;
-    for (let i = 0; i < array.length; ++i) {
-        array[i].addEventListener('click', function () {
-            y_var = parseInt(array[i].value);
-            console.log(y_var);
-        })
+    function select(element) {
+        element.onclick = function () {
+            y = this.value;
+            console.log(y);
+        }
     }
 
     function isValidValue(node) {
         return node.validity.valid;
     }
-
 
     function checkX() {
         xField.addEventListener("input", function (event) {
@@ -51,10 +50,10 @@ $(document).ready(function () {
     }
 
     checkX();
+    array.forEach(select);
     $("form").on("submit", function (event) {
         event.preventDefault();
         console.log("submitted");
-        // let vars = $(this).serialize() + "&y_value=" + analyzeYButton(yValArray);
 
         if (!isValid) {
             return;
@@ -63,9 +62,9 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "/script.php",
-            data: $(this).serialize() + "&y_value=",
-            success: function () {
-                console.log("success");
+            data: $(this).serialize() + "&y_value="+y,
+            success: function (data) {
+                console.log("ajax_success: " + data);
             },
             error: function () {
                 console.log("error");
@@ -73,6 +72,7 @@ $(document).ready(function () {
         })
         return true;
     });
+
 
 
 });
