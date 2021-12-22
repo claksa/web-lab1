@@ -61,13 +61,18 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "/script.php",
+            url: "script.php",
             data: $(this).serialize() + "&y_value="+y,
+            beforeSend: function () {
+                $(".send_form").attr("disabled","disabled");
+            },
             success: function (data) {
                 console.log("ajax_success: " + data);
+                $(".send_form").attr("disabled", false);
             },
             error: function () {
                 console.log("error");
+                $(".send_form").attr("disabled",false);
             }
         })
         return true;
