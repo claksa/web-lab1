@@ -1,6 +1,7 @@
 body{
     background-color: #FFFAFA;
     font-family: "PT Serif", serif;
+    margin: 0 auto;
 }
 
 /*headers*/
@@ -18,8 +19,14 @@ body{
 header{
     width: 30%;
     text-align: left;
-    background-color: antiquewhite;
-    padding: 2%;
+    padding: 1%;
+    color: #ffffff;
+    background-color: #008B8B;
+    margin-bottom: 10%;
+    border: 5px solid #20B2AA;
+    border-top-left-radius: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .my_table{
