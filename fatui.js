@@ -62,22 +62,22 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "script.php",
-            data: $(this).serialize() + "&y_value="+y,
+            data: $(this).serialize() + "&y_value=" + y + "&timezone=" + new Date().getTimezoneOffset(),
             beforeSend: function () {
-                $(".send_form").attr("disabled","disabled");
+                $(".send_form").attr("disabled", "disabled");
             },
             success: function (data) {
                 console.log("ajax_success: " + data);
                 $(".send_form").attr("disabled", false);
+                $("#receiver").append(data);
             },
             error: function () {
                 console.log("error");
-                $(".send_form").attr("disabled",false);
+                $(".send_form").attr("disabled", false);
             }
         })
         return true;
     });
-
 
 
 });
