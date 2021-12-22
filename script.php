@@ -55,7 +55,7 @@ if (checkValues($x,$y,$radius)) {
     $workTime = round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"],5);
 
 
-    $table_template ="<tr>";
+    $table_template ="<tr id='test'>";
     $table_template.="<td>$x</td>";
     $table_template.="<td>$y</td>";
     $table_template.="<td>$radius</td>";

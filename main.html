@@ -10,55 +10,70 @@
     <script src="fatui.js"></script>
 </head>
 <body>
-    <h4>Ввод данных:</h4>
-    <table>
-       <form novalidate action="script.php" method="POST">
-            <tr>
+<header>
+    <h4 id="my_header">Pavlova Polina P3215</h4>
+    <p>Variant 15014</p>
+</header>
+<table class="my_table">
+    <tbody>
+    <tr>
+        <th>Enter data:</th>
+    </tr>
+    <form novalidate action="script.php" method="POST">
+        <tr>
+            <td>X-coordinate:</td>
+            <label for="x_value">
                 <td>
-                    <label for="x_value">
-                        <span>X-coordinate: </span>
                     <input id="x_value" name="x_value" type="number" step="0.1" placeholder="-3...5" min="-3" max="5">
                     <span class="error" aria-live="polite"></span>
-                    </label>
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <scope>Y-coordinate: </scope>
-                    <input type="button" class="set_y" id="y5" name ="y_value" value="-4">
-                    <input type="button" class="set_y" id="y-3" name="y_value" value="-3">
-                    <input type="button" class="set_y" id="y-2" name="y_value" value="-2">
-                    <input type="button" class="set_y" id="y-1" name="y_value" value="-1">
-                    <input type="button" class="set_y" id="y0" name ="y_value" value="0">
-                    <input type="button" class="set_y" id="y1" name="y_value" value="1">
-                    <input type="button" class="set_y" id="y2" name="y_value" value="2">
-                    <input type="button" class="set_y" id="y3" name="y_value" value="3">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <scope>Radius value: </scope>
-                    <label for="R1">1</label>
-                    <input class="set_r" type="checkbox" id="R1" name="r_value" value="1">
-                    <label  for="R2">2</label>
-                    <input class="set_r" type="checkbox" id="R2" name="r_value" value="2">
-                    <label for="R3">3</label>
-                    <input class="set_r" type="checkbox" id="R3" name="r_value" value="3">
-                    <label for="R4">4</label>
-                    <input class="set_r" type="checkbox" id="R4" name="r_value" value="4">
-                    <label for="R5">5</label>
-                    <input class="set_r" type="checkbox" id="R5" name="r_value" value="5">
-                </td>
-            </tr>
-           <tr>
-               <td>
-                   <input type="submit" value="send" class = "send_form">
-                   <button type="reset" >reset</button>
-               </td>
-           </tr>
-       </form>
-    </table>
-    <table id = 'receiver' style="display:none;">
+            </label>
+        </tr>
+        <tr>
+            <td>Y-coordinate:</td>
+            <td>
+                <input type="button" class="set_y" id="y5" name="y_value" value="-4">
+                <input type="button" class="set_y" id="y-3" name="y_value" value="-3">
+                <input type="button" class="set_y" id="y-2" name="y_value" value="-2">
+                <input type="button" class="set_y" id="y-1" name="y_value" value="-1">
+                <input type="button" class="set_y" id="y0" name="y_value" value="0">
+                <input type="button" class="set_y" id="y1" name="y_value" value="1">
+                <input type="button" class="set_y" id="y2" name="y_value" value="2">
+                <input type="button" class="set_y" id="y3" name="y_value" value="3">
+            </td>
+        </tr>
+        <tr>
+            <td>Radius value:</td>
+            <td>
+                <label for="R1">1</label>
+                <input class="set_r" type="checkbox" id="R1" name="r_value" value="1">
+                <label for="R2">2</label>
+                <input class="set_r" type="checkbox" id="R2" name="r_value" value="2">
+                <label for="R3">3</label>
+                <input class="set_r" type="checkbox" id="R3" name="r_value" value="3">
+                <label for="R4">4</label>
+                <input class="set_r" type="checkbox" id="R4" name="r_value" value="4">
+                <label for="R5">5</label>
+                <input class="set_r" type="checkbox" id="R5" name="r_value" value="5">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="send" class="send_form">
+                <button type="reset">reset</button>
+            </td>
+        </tr>
+    </form>
+    </tbody>
+</table>
+<table>
+    <tr>
+    <img src="graph.png" alt="graph">
+    </tr>
+</table>
+<div id="scroll">
+    <table id="receiver" style="display:none;">
+        <thead><h4>Result:</h4></thead>
         <tr>
             <th>X</th>
             <th>Y</th>
@@ -68,5 +83,6 @@
             <th>Result</th>
         </tr>
     </table>
+</div>
 </body>
 </html>
