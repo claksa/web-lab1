@@ -53,23 +53,16 @@ if (checkValues($x,$y,$radius)) {
     $status = checkQuarters($x,$y,$radius);
     $currentTime = date("H : i : s",time());
     $workTime = round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"],5);
-    $table_template = "<table id='output'><tr>";
-    $table_template.="<th>X</th>";
-    $table_template.="<th>Y</th>";
-    $table_template.="<th>R</th>";
-    $table_template.="<th>CurrentTime</th>";
-    $table_template.="<th>WorkTime</th>";
-    $table_template.="<th>Result</th>";
-    $table_template.="</tr>";
 
-    $table_template.="<tr><td>$x</td>";
+
+    $table_template ="<tr>";
+    $table_template.="<td>$x</td>";
     $table_template.="<td>$y</td>";
     $table_template.="<td>$radius</td>";
     $table_template.="<td>$currentTime</td>";
     $table_template.="<td>$workTime</td>";
     $table_template.="<td>$status</td>";
     $table_template.="</tr>";
-    $table_template.="</table>";
 
     echo $table_template;
 } else {
