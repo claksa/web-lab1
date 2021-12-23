@@ -3,6 +3,7 @@ $(document).ready(function () {
     let y;
     let isValid = false;
     let xField = document.getElementById("x_value");
+    let value = $("#x_value").val().replace(',', '.');
     const error = document.querySelector('#x_value+span.error');
     let array = Array.prototype.slice.call(document.getElementsByName("y_value"));
 
@@ -31,9 +32,15 @@ $(document).ready(function () {
         });
     }
 
+    function setPointer() {
+        let pointer = document.getElementById("pointer");
+        pointer.style.visibility = "visible";
+        pointer.setAttribute("cx",value*54+110);
+        pointer.setAttribute("cy", y*54+110);
+    }
+
 
     function showMessage() {
-        let value = $("#x_value").val().replace(',', '.');
         if (xField.validity.valueMissing || !(value instanceof Number)) {
             error.textContent = 'Please, enter a number! :(';
         } else if (!isNaN(parseFloat(value))) {
@@ -72,6 +79,7 @@ $(document).ready(function () {
                 let result_style = document.getElementById('receiver').style;
                 result_style.display = 'table-row';
                 $("#receiver").append(data);
+                setPointer();
             },
             error: function () {
                 console.log("error");
