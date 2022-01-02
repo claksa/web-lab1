@@ -35,8 +35,8 @@ $(document).ready(function () {
     function setPointer() {
         let pointer = document.getElementById("pointer");
         pointer.style.visibility = "visible";
-        pointer.setAttribute("cx",value*68+110);
-        pointer.setAttribute("cy", y*68+110);
+        pointer.setAttribute("cx",value*26+110);
+        pointer.setAttribute("cy", (-1)*y*26+110);
     }
 
 
