@@ -76,7 +76,7 @@ $(document).ready(function () {
             success: function (data) {
                 console.log("ajax_success: " + data);
                 $(".send_form").attr("disabled", false);
-                let result_style = document.getElementById('receiver').style;
+                let result_style = document.getElementById('row').style;
                 result_style.display = 'table-row';
                 $("#receiver").append(data);
                 setPointer();
