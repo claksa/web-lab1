@@ -2,8 +2,8 @@
 
 const X_MAX = 5;
 const X_MIN = -3;
-const y_values = array(5,-3,-2,-1,0,1,2,3);
-const r_values = array(1,2,3,4,5);
+const y_values = array(5, -3, -2, -1, 0, 1, 2, 3);
+const r_values = array(1, 2, 3, 4, 5);
 
 function isExist($arg) {
     return isset($arg);
@@ -23,9 +23,9 @@ function checkThirdQuarter($x_arg, $y_arg, $r_arg) {
 
 function checkQuarters($x_arg, $y_arg, $r_arg) {
     if (checkFirstQuarter($x_arg, $y_arg, $r_arg) || checkSecondQuarter($x_arg, $y_arg, $r_arg) || checkThirdQuarter($x_arg, $y_arg, $r_arg)) {
-        return "correct";
+        return "входит в ОДЗ";
     } else {
-        return "incorrect";
+        return "не входит в ОДЗ";
     }
 }
 
@@ -38,30 +38,30 @@ function isNumbers($x_arg, $y_arg, $r_arg) {
 }
 
 function checkValues($x_arg, $y_arg, $r_arg) {
-    return isCoordinatesExist($x_arg,$y_arg,$r_arg) && isNumbers($x_arg,$y_arg,$r_arg)
-        && ($x_arg<=X_MAX && $x_arg >= X_MIN)
-        && in_array($y_arg,y_values) && in_array($r_arg, r_values);
+    return isCoordinatesExist($x_arg, $y_arg, $r_arg) && isNumbers($x_arg, $y_arg, $r_arg)
+        && ($x_arg <= X_MAX && $x_arg >= X_MIN)
+        && in_array($y_arg, y_values) && in_array($r_arg, r_values);
 }
 
 //main
 $x = $_POST['x_value'];
 $y = $_POST['y_value'];
 $radius = $_POST['r_value'];
-date_default_timezone_set($_POST['timezone'])*60;
+date_default_timezone_set($_POST['timezone']) * 60;
 
-if (checkValues($x,$y,$radius)) {
-    $status = checkQuarters($x,$y,$radius);
-    $currentTime = date("H : i : s",time());
-    $workTime = round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"],5);
+if (checkValues($x, $y, $radius)) {
+    $status = checkQuarters($x, $y, $radius);
+    $currentTime = date("H : i : s", time());
+    $workTime = round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"], 5);
 
 
     $table_template ="<tr id='test'>";
-    $table_template.="<td>$x</td>";
-    $table_template.="<td>$y</td>";
-    $table_template.="<td>$radius</td>";
-    $table_template.="<td>$currentTime</td>";
-    $table_template.="<td>$workTime</td>";
-    $table_template.="<td>$status</td>";
+    $table_template .= "<td>$x</td>";
+    $table_template .= "<td>$y</td>";
+    $table_template .= "<td>$radius</td>";
+    $table_template .= "<td>$currentTime</td>";
+    $table_template .= "<td>$workTime</td>";
+    $table_template .= "<td>$status</td>";
     $table_template.="</tr>";
 
     echo $table_template;

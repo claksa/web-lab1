@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
+    const error = document.querySelector('#x_value+span.error');
     let y;
     let isValid = false;
     let xField = document.getElementById("x_value");
     let value = $("#x_value").val().replace(',', '.');
-    const error = document.querySelector('#x_value+span.error');
     let array = Array.prototype.slice.call(document.getElementsByName("y_value"));
 
     function select(element) {

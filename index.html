@@ -20,12 +20,9 @@
     </thead>
     <tbody>
     <tr id="graph">
-        <td>
+        <td rowspan="5">
             <img src="./img/mygraph.svg" alt="graph"/>
         </td>
-    </tr>
-    <tr>
-        <th>Enter data:</th>
     </tr>
     <form novalidate action="script.php" method="POST">
         <tr>
@@ -74,19 +71,18 @@
     </form>
     </tbody>
 </table>
-    <table id="row" style="display:none;">
-        <thead>
-        <tr>
-            <th>X</th>
-            <th>Y</th>
-            <th>R</th>
-            <th>CurrentTime</th>
-            <th>WorkTime</th>
-            <th>Result</th>
-        </tr>
-        </thead>
-        <tbody id="receiver">
-        </tbody>
-    </table>
+<table id="row" style="display:none;">
+    <thead>
+    <tr>
+        <th>X</th>
+        <th>Y</th>
+        <th>R</th>
+        <th>CurrentTime</th>
+        <th>WorkTime</th>
+        <th>Result</th>
+    </tr>
+    </thead>
+    <tbody id="receiver"></tbody>
+</table>
 </body>
 </html>
