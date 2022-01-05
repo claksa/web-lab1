@@ -45,6 +45,4 @@
     <!-- Circle -->
     <path class="svg-figure circle-figure" d="M 111 43 A 66 66 1 0 1 176 110 L 110 110 Z"
           fill="green" fill-opacity="0.25" stroke="darkgreen" stroke-opacity="0.5"/>
-
-    <circle id="pointer" r="5" cx="110" cy="110" fill-opacity="0.7" fill="red" stroke="firebrick" visibility="hidden"></circle>
 </svg>

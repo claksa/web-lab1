@@ -32,12 +32,6 @@ $(document).ready(function () {
         });
     }
 
-    function setPointer() {
-        let pointer = document.getElementById("pointer");
-        pointer.style.visibility = "visible";
-        pointer.setAttribute("cx",value*26+110);
-        pointer.setAttribute("cy", (-1)*y*26+110);
-    }
 
 
     function showMessage() {
@@ -79,7 +73,6 @@ $(document).ready(function () {
                 let result_style = document.getElementById('row').style;
                 result_style.display = 'table-row';
                 $("#receiver").append(data);
-                setPointer();
             },
             error: function () {
                 console.log("error");

@@ -2,7 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>web_lab1</title>
+    <title>lab1</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
     <link href="/static/styles.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -10,80 +11,81 @@
     <script src="static/validation.js"></script>
 </head>
 <body>
-<table class="my_table">
-    <thead>
-    <tr id="heading">
-        <td>
-            <h4>Лабораторная работа №1. Вариант 15014</h4>
-            <h5>Павлова Полина Дмитриевна, P3215</h5>
-        </td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr id="graph">
-        <td rowspan="5">
-            <img src="./img/mygraph.svg" alt="graph"/>
-        </td>
-    </tr>
-    <form id="form" novalidate action="script.php" method="POST">
-        <tr>
-            <td>
-                X:
-            <label for="x_value">
-                    <input id="x_value" name="x_value" type="number" step="1" placeholder="-3...5" min="-3" max="5">
-                    <span class="error" aria-live="polite"></span>
-                </label>
+<div class="container">
+    <header>
+        <h4>Лабораторная работа №1. Вариант 15014</h4>
+        <h5>Павлова Полина Дмитриевна, P3215</h5>
+    </header>
+    <table class="my_table">
+        <tbody>
+        <tr id="graph">
+            <td rowspan="6">
+                    <img src="./img/mygraph.svg" alt="graph"/>
             </td>
         </tr>
+        <form id="form" novalidate action="script.php" method="POST">
+            <tr>
+                <td>Введите значения:</td>
+            </tr>
+            <tr>
+                <td>
+                    X:
+                    <label for="x_value">
+                        <input id="x_value" name="x_value" type="number" step="1" placeholder="-3...5" min="-3" max="5">
+                        <span class="error" aria-live="polite"></span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Y:
+                    <input type="button" class="set_y" id="y5" name="y_value" value="-4">
+                    <input type="button" class="set_y" id="y-3" name="y_value" value="-3">
+                    <input type="button" class="set_y" id="y-2" name="y_value" value="-2">
+                    <input type="button" class="set_y" id="y-1" name="y_value" value="-1">
+                    <input type="button" class="set_y" id="y0" name="y_value" value="0">
+                    <input type="button" class="set_y" id="y1" name="y_value" value="1">
+                    <input type="button" class="set_y" id="y2" name="y_value" value="2">
+                    <input type="button" class="set_y" id="y3" name="y_value" value="3">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    R:
+                    <label for="R1">1</label>
+                    <input class="set_r" type="checkbox" id="R1" name="r_value" value="1">
+                    <label for="R2">2</label>
+                    <input class="set_r" type="checkbox" id="R2" name="r_value" value="2">
+                    <label for="R3">3</label>
+                    <input class="set_r" type="checkbox" id="R3" name="r_value" value="3">
+                    <label for="R4">4</label>
+                    <input class="set_r" type="checkbox" id="R4" name="r_value" value="4">
+                    <label for="R5">5</label>
+                    <input class="set_r" type="checkbox" id="R5" name="r_value" value="5">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="проверить" class="send_form">
+                    <button type="reset">сброс</button>
+                </td>
+            </tr>
+        </form>
+        </tbody>
+    </table>
+    <table id="row" style="display:none;">
+        <thead>
         <tr>
-            <td>
-                Y:
-                <input type="button" class="set_y" id="y5" name="y_value" value="-4">
-                <input type="button" class="set_y" id="y-3" name="y_value" value="-3">
-                <input type="button" class="set_y" id="y-2" name="y_value" value="-2">
-                <input type="button" class="set_y" id="y-1" name="y_value" value="-1">
-                <input type="button" class="set_y" id="y0" name="y_value" value="0">
-                <input type="button" class="set_y" id="y1" name="y_value" value="1">
-                <input type="button" class="set_y" id="y2" name="y_value" value="2">
-                <input type="button" class="set_y" id="y3" name="y_value" value="3">
-            </td>
+            <th>X</th>
+            <th>Y</th>
+            <th>R</th>
+            <th>Текущее время</th>
+            <th>Время работы</th>
+            <th>Результат</th>
         </tr>
-        <tr>
-            <td>
-                R:
-                <label for="R1">1</label>
-                <input class="set_r" type="checkbox" id="R1" name="r_value" value="1">
-                <label for="R2">2</label>
-                <input class="set_r" type="checkbox" id="R2" name="r_value" value="2">
-                <label for="R3">3</label>
-                <input class="set_r" type="checkbox" id="R3" name="r_value" value="3">
-                <label for="R4">4</label>
-                <input class="set_r" type="checkbox" id="R4" name="r_value" value="4">
-                <label for="R5">5</label>
-                <input class="set_r" type="checkbox" id="R5" name="r_value" value="5">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="проверить" class="send_form">
-                <button type="reset">сброс</button>
-            </td>
-        </tr>
-    </form>
-    </tbody>
-</table>
-<table id="row" style="display:none;">
-    <thead>
-    <tr>
-        <th>X</th>
-        <th>Y</th>
-        <th>R</th>
-        <th>Текущее время</th>
-        <th>Время работы</th>
-        <th>Результат</th>
-    </tr>
-    </thead>
-    <tbody id="receiver"></tbody>
-</table>
+        </thead>
+        <tbody id="receiver"></tbody>
+    </table>
+</div>
 </body>
 </html>

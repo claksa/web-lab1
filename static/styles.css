@@ -1,13 +1,20 @@
 body {
-    color: #333333;
-    display: flex;
+    margin: 0;
     height: 100%;
     width: 100%;
+
+    color: #333333;
+    background-color: #f8f8ff;
+}
+
+.container {
+    display: flex;
 
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
 }
+
 
 .font {
     font-family: Georgia, "Times New Roman", serif;
@@ -17,6 +24,10 @@ table {
     flex: 1;
 }
 
+td,th {
+    text-align: center;
+}
+
 .my_table {
     display: flex;
     flex-direction: column;
@@ -24,33 +35,45 @@ table {
     margin: auto;
     height: 100%;
     width: 100%;
+    padding-top: 0;
+    padding-bottom: 2%;
 
     align-items: center;
     justify-content: space-evenly;
-    padding-bottom: 2%;
 }
 
 .my_table img {
-    width: 260px;
-    height: 260px;
-    padding-right: 4em;
+    margin-right: 2em;
+    padding: 2em;
+
+    border: 2px solid #324ab2;
+    border-radius: 10px;
+    background-color: #f6fbfe;
 }
 
-.my_table > thead {
-    align-items: center;
-    padding-bottom: 5%;
+
+header {
+    position: sticky;
+    z-index: 10;
+    margin-bottom: 2em;
+    align-self: stretch;
+    text-align: center;
+
+    background-color: #000080;
+    color: #ffffff;
 }
 
-.my_table > thead h5, h4 {
+header h5, h4 {
     margin: 0.4em;
     padding: 0;
 }
 
+
 #row {
     margin: auto;
-    width: 65%;
+    width: 60%;
     padding-top: 2%;
-    padding-left: 8%;
+    padding-left: 9%;
     padding-right: 0;
 
     alignment: center;
