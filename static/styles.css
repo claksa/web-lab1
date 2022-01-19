@@ -13,8 +13,8 @@ body {
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
-}
 
+}
 
 .font {
     font-family: Georgia, "Times New Roman", serif;
@@ -28,11 +28,15 @@ td,th {
     text-align: center;
 }
 
+#name{
+    padding: 3%;
+}
+
+
 .my_table {
     display: flex;
     flex-direction: column;
 
-    margin: auto;
     height: 100%;
     width: 100%;
     padding-top: 0;
@@ -40,17 +44,18 @@ td,th {
 
     align-items: center;
     justify-content: space-evenly;
+
 }
 
-.my_table img {
-    margin-right: 2em;
-    padding: 2em;
-
+.my_table thead {
+    /*position: center;*/
+    padding-bottom: 0;
+    margin-bottom: 2.5%;
+    height: 17em;
     border: 2px solid #324ab2;
     border-radius: 10px;
     background-color: #f6fbfe;
 }
-
 
 header {
     position: sticky;
@@ -69,6 +74,11 @@ header h5, h4 {
 }
 
 
+#form{
+    padding-left: 0;
+    /*position: center;*/
+}
+
 #row {
     margin: auto;
     width: 60%;
@@ -76,7 +86,7 @@ header h5, h4 {
     padding-left: 9%;
     padding-right: 0;
 
-    alignment: center;
+    /*alignment: center;*/
 
     border: 1px solid #000;
 }

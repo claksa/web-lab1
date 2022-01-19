@@ -17,19 +17,25 @@
         <h5>Павлова Полина Дмитриевна, P3215</h5>
     </header>
     <table class="my_table">
-        <tbody>
-        <tr id="graph">
-            <td rowspan="6">
-                    <img src="./img/mygraph.svg" alt="graph"/>
+        <thead>
+            <td class="graph">
+                <figure>
+                    <img src="./img/mygraph.svg" width="220" height="220" alt="graph"/>
+                </figure>
+                <canvas id="canvas">Ваш браузер не поддерживает канву</canvas>
             </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th id="name" colspan="2">
+                Введите значения:
+            </th>
         </tr>
         <form id="form" novalidate action="script.php" method="POST">
             <tr>
-                <td>Введите значения:</td>
-            </tr>
-            <tr>
-                <td>
-                    X:
+                <td>X: </td>
+                <td class="coordinate">
                     <label for="x_value">
                         <input id="x_value" name="x_value" type="number" step="1" placeholder="-3...5" min="-3" max="5">
                         <span class="error" aria-live="polite"></span>
@@ -37,8 +43,8 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    Y:
+                <td>Y: </td>
+                <td class="coordinate">
                     <input type="button" class="set_y" id="y5" name="y_value" value="-4">
                     <input type="button" class="set_y" id="y-3" name="y_value" value="-3">
                     <input type="button" class="set_y" id="y-2" name="y_value" value="-2">
@@ -50,8 +56,8 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    R:
+                <td>R: </td>
+                <td class="coordinate">
                     <label for="R1">1</label>
                     <input class="set_r" type="checkbox" id="R1" name="r_value" value="1">
                     <label for="R2">2</label>
@@ -65,7 +71,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
                     <input type="submit" value="проверить" class="send_form">
                     <button type="reset">сброс</button>
                 </td>

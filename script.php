@@ -2,7 +2,7 @@
 
 const X_MAX = 5;
 const X_MIN = -3;
-const y_values = array(5, -3, -2, -1, 0, 1, 2, 3);
+const y_values = array(-4, -3, -2, -1, 0, 1, 2, 3);
 const r_values = array(1, 2, 3, 4, 5);
 
 function isExist($arg) {
