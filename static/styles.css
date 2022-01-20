@@ -49,8 +49,6 @@ td,th {
 
 .graph {
     position: relative;
-    /*padding-bottom: 0;*/
-    /*margin-bottom: 2.5%;*/
     height: 100%;
     width: 100%;
     border: 2px solid #324ab2;

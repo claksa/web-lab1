@@ -10,15 +10,9 @@ $(document).ready(function () {
     const error = document.querySelector('#x_value+span.error');
 
     let y;
+    let radius;
     let isValid = false;
     let xField = document.getElementById("x_value");
-    // let radius = document.querySelector("input[type=checkbox]:checked").value;
-    let radius = window.localStorage.getItem("r_value");
-    console.log(radius);
-
-    if (radius !== null){
-        redrawFromInput(window.localStorage.getItem("x_value"), window.localStorage.getItem("y_value"));
-    }
 
     let value = $("#x_value").val().replace(',', '.');
     let array = Array.prototype.slice.call(document.getElementsByName("y_value"));
@@ -34,7 +28,7 @@ $(document).ready(function () {
         return node.validity.valid;
     }
 
-    function checkX() {
+    function validateX() {
         xField.addEventListener("input", function (event) {
             console.log("check x");
             if (isValidValue(xField)) {
@@ -46,29 +40,6 @@ $(document).ready(function () {
                 event.preventDefault();
             }
         });
-    }
-
-    $(".set_r").on("click", function () {
-        if (!validate_R())
-            return;
-        radius = $('.set_r:checked').val();
-        console.log(radius);
-    })
-
-    //TODO:  изменить валидацию радиуса
-    function validate_R(){
-        if ($(".set_r").is(":checked")){
-            if ($(".set_r:checked").length > 1){
-                $(".r_container").addClass("box_error");
-                return false;
-            }
-            $(".r_container").removeClass("box_error");
-            return true;
-        }
-        else{
-            $(".r_container").addClass("box_error");
-            return false;
-        }
     }
 
 
@@ -115,11 +86,8 @@ $(document).ready(function () {
         drawPoint(x * COEFF / radius + AXIS, -(y / radius * COEFF - AXIS));
     }
 
-    checkX();
+    validateX();
     array.forEach(select);
-
-
-    //TODO: добавить прошлые координаты из таблицы)))
     canvas.on('click', function (event) {
         console.log("clicked");
 
@@ -130,7 +98,7 @@ $(document).ready(function () {
         let y = (-event.offsetY + AXIS) / COEFF * radius;
         let minDiff = Infinity;
         let nearestYValue;
-        for (let i = 0; i < Y_VALUES.length; i++){
+        for (let i = 0; i < Y_VALUES.length; i++) {
             if (Math.abs(y - Y_VALUES[i]) < minDiff){
                 minDiff = Math.abs(y - Y_VALUES[i]);
                 nearestYValue = Y_VALUES[i];
@@ -170,21 +138,28 @@ $(document).ready(function () {
                 $(".send_form").attr("disabled", false);
             }
         })
-
-        window.localStorage.setItem("r_value", radius);
-        window.localStorage.setItem("x_value", x);
-        window.localStorage.setItem("y_value", y);
         return true;
     });
 
-    //  TODO: потестить без локалсториджа
-    $("#form").on("reset",function (){
-        window.localStorage.removeItem("r_value");
-        window.localStorage.removeItem("x_value");
-        window.localStorage.removeItem("y_value");
+    $(".set_r").on("change",function (){
+        radius = $(this).val();
+        $(this).addClass('r_changed');
+        $('.input-form__button_r').not(this).removeClass('r_changed');
 
-    })
+        let svgGraph = document.querySelector(".result-graph").getSVGDocument();
+        svgGraph.querySelector('.coordinate-text_minus-Rx').textContent = (-radius).toString();
+        svgGraph.querySelector('.coordinate-text_minus-Ry').textContent = (-radius).toString();
+        svgGraph.querySelector('.coordinate-text_minus-half-Rx').textContent = (-radius/2).toString();
+        svgGraph.querySelector('.coordinate-text_minus-half-Ry').textContent = (-radius/2).toString();
+        svgGraph.querySelector('.coordinate-text_plus-Rx').textContent = (radius).toString();
+        svgGraph.querySelector('.coordinate-text_plus-Ry').textContent = (radius).toString();
+        svgGraph.querySelector('.coordinate-text_plus-half-Rx').textContent = (radius/2).toString();
+        svgGraph.querySelector('.coordinate-text_plus-half-Ry').textContent = (radius/2).toString();
 
+        redrawFromInput();
+    });
 
+    $('.set_x').on('input', event => redrawFromInput());
+    $('.set_y').on('click', event => redrawFromInput());
 
 });
