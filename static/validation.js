@@ -1,8 +1,8 @@
 $(document).ready(function () {
     let canvas = $('#canvas');
 
-    const GRAPH_COFF = 67;
-    const GRAPH_MOVE = 110;
+    const COEFF = 67;
+    const AXIS = 110;
 
     const X_MAX = 5;
     const X_MIN = -3;
@@ -12,12 +12,16 @@ $(document).ready(function () {
     let y;
     let isValid = false;
     let xField = document.getElementById("x_value");
+    // let radius = document.querySelector("input[type=checkbox]:checked").value;
     let radius = window.localStorage.getItem("r_value");
+    console.log(radius);
+
+    if (radius !== null){
+        redrawFromInput(window.localStorage.getItem("x_value"), window.localStorage.getItem("y_value"));
+    }
 
     let value = $("#x_value").val().replace(',', '.');
     let array = Array.prototype.slice.call(document.getElementsByName("y_value"));
-
-
 
     function select(element) {
         element.onclick = function () {
@@ -44,6 +48,29 @@ $(document).ready(function () {
         });
     }
 
+    $(".set_r").on("click", function () {
+        if (!validate_R())
+            return;
+        radius = $('.set_r:checked').val();
+        console.log(radius);
+    })
+
+    //TODO:  изменить валидацию радиуса
+    function validate_R(){
+        if ($(".set_r").is(":checked")){
+            if ($(".set_r:checked").length > 1){
+                $(".r_container").addClass("box_error");
+                return false;
+            }
+            $(".r_container").removeClass("box_error");
+            return true;
+        }
+        else{
+            $(".r_container").addClass("box_error");
+            return false;
+        }
+    }
+
 
     function showMessage() {
         if (xField.validity.valueMissing || !(value instanceof Number)) {
@@ -67,10 +94,11 @@ $(document).ready(function () {
 
     function drawPoint(x, y) {
         clearCanvas();
-        if (x > canvas.width() || x < -canvas.width() || y > canvas.height() || y < -canvas.height())
-            return;
-
         let Axes = canvas[0].getContext('2d');
+        if (x > canvas.width() || x < -canvas.width() || y > canvas.height() || y < -canvas.height()) {
+            return;
+        }
+        console.log("I start draw");
         Axes.setLineDash([2, 2]);
         Axes.beginPath();
         Axes.moveTo(x, 110);
@@ -84,44 +112,37 @@ $(document).ready(function () {
     }
 
     function redrawFromInput(x, y) {
-        drawPoint(x * GRAPH_COFF / radius + GRAPH_MOVE,
-            -(y / radius * GRAPH_COFF - GRAPH_MOVE));
+        drawPoint(x * COEFF / radius + AXIS, -(y / radius * COEFF - AXIS));
     }
-
-    //main
 
     checkX();
-
     array.forEach(select);
-    if (radius !== null){
-        redrawFromInput(window.localStorage.getItem("x_value"), window.localStorage.getItem("y_value"));
-    }
 
-    canvas.on("click", function (event) {
 
-        let x = (event.offsetX - GRAPH_MOVE) / GRAPH_COFF * radius;
+    //TODO: добавить прошлые координаты из таблицы)))
+    canvas.on('click', function (event) {
+        console.log("clicked");
+
+        let x = (event.offsetX - AXIS) / COEFF * radius;
         if (x < X_MIN) x = X_MIN;
         if (x > X_MAX) x = X_MAX;
 
-        let y = (-event.offsetY + GRAPH_MOVE) / GRAPH_COFF * radius;
+        let y = (-event.offsetY + AXIS) / COEFF * radius;
         let minDiff = Infinity;
         let nearestYValue;
-        for (let i = 0; i < Y_VALUES.length; i++) {
-            if (Math.abs(x - Y_VALUES[i]) < minDiff) {
-                minDiff = Math.abs(x - Y_VALUES[i]);
+        for (let i = 0; i < Y_VALUES.length; i++){
+            if (Math.abs(y - Y_VALUES[i]) < minDiff){
+                minDiff = Math.abs(y - Y_VALUES[i]);
                 nearestYValue = Y_VALUES[i];
             }
         }
-
-        drawPoint(GRAPH_COFF / radius + GRAPH_MOVE, -(nearestYValue * y / radius * GRAPH_COFF - GRAPH_MOVE));
-
-    //    let ySelected = $('input[name="y_value"][value="' + nearestYValue.trim() + '"]');
-      //  ySelected.trigger("click");
-
-      //  $("#x_value").val(x.toString().substring(0, 5));
+        drawPoint(COEFF/radius + AXIS, -(nearestYValue/radius * COEFF - AXIS));
+        let ySelected = $('input[name="x_val"][value="'+ nearestYValue.trim() +'"]');
+        ySelected.trigger("click");
+        $("#x_value").val();
     })
 
-    $("form").on("submit", function (event) {
+    $("#form").on("submit", function (event) {
         event.preventDefault();
         console.log("submitted");
 
@@ -143,7 +164,6 @@ $(document).ready(function () {
                 let result_style = document.getElementById('row').style;
                 result_style.display = 'table-row';
                 $("#receiver").append(data);
-
             },
             error: function () {
                 console.log("error");
@@ -154,8 +174,17 @@ $(document).ready(function () {
         window.localStorage.setItem("r_value", radius);
         window.localStorage.setItem("x_value", x);
         window.localStorage.setItem("y_value", y);
-
         return true;
     });
+
+    //  TODO: потестить без локалсториджа
+    $("#form").on("reset",function (){
+        window.localStorage.removeItem("r_value");
+        window.localStorage.removeItem("x_value");
+        window.localStorage.removeItem("y_value");
+
+    })
+
+
 
 });

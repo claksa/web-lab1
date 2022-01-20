@@ -19,9 +19,9 @@
     <table class="my_table">
         <thead>
             <td class="graph">
-                <figure>
-                    <img src="./img/mygraph.svg" width="220" height="220" alt="graph"/>
-                </figure>
+                <object class="result-graph" type="image/svg+xml" data="./img/mygraph.svg">
+                    <img src="./img/graph.png" width="220" height="220" alt="graph"/>
+                </object>
                 <canvas id="canvas">Ваш браузер не поддерживает канву</canvas>
             </td>
         </tr>
@@ -58,15 +58,15 @@
             <tr>
                 <td>R: </td>
                 <td class="coordinate">
-                    <label for="R1">1</label>
+                    <label class="r_container" for="R1">1</label>
                     <input class="set_r" type="checkbox" id="R1" name="r_value" value="1">
-                    <label for="R2">2</label>
+                    <label class="r_container" for="R2">2</label>
                     <input class="set_r" type="checkbox" id="R2" name="r_value" value="2">
-                    <label for="R3">3</label>
+                    <label class="r_container" for="R3">3</label>
                     <input class="set_r" type="checkbox" id="R3" name="r_value" value="3">
-                    <label for="R4">4</label>
+                    <label class = "r_container" for="R4">4</label>
                     <input class="set_r" type="checkbox" id="R4" name="r_value" value="4">
-                    <label for="R5">5</label>
+                    <label class = "r_container" for="R5">5</label>
                     <input class="set_r" type="checkbox" id="R5" name="r_value" value="5">
                 </td>
             </tr>
