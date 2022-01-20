@@ -19,8 +19,10 @@ $(document).ready(function () {
 
     function select(element) {
         element.onclick = function () {
-            y = this.value;
+            y = $(this).val();
             console.log(y);
+            $(this).addClass('y_selected');
+            $('.set_y').not(this).removeClass('y_selected');
         }
     }
 
@@ -83,7 +85,7 @@ $(document).ready(function () {
     }
 
     function redrawFromInput(x, y) {
-        drawPoint(x * COEFF / radius + AXIS, -(y / radius * COEFF - AXIS));
+        drawPoint(x * COEFF / radius + AXIS, -(y * COEFF / radius  - AXIS));
     }
 
     validateX();
@@ -104,7 +106,7 @@ $(document).ready(function () {
                 nearestYValue = Y_VALUES[i];
             }
         }
-        drawPoint(COEFF/radius + AXIS, -(nearestYValue/radius * COEFF - AXIS));
+        drawPoint(COEFF/radius + AXIS, -(nearestYValue * COEFF/radius - AXIS));
         let ySelected = $('input[name="x_val"][value="'+ nearestYValue.trim() +'"]');
         ySelected.trigger("click");
         $("#x_value").val();
@@ -118,7 +120,6 @@ $(document).ready(function () {
             return;
         }
 
-        let x = $("#x_value").val();
         $.ajax({
             type: "POST",
             url: "script.php",
@@ -141,10 +142,12 @@ $(document).ready(function () {
         return true;
     });
 
+    $('#form').on("reset", function (event) {
+        $('.set_y').removeClass('y_selected');
+    })
+
     $(".set_r").on("change",function (){
         radius = $(this).val();
-        $(this).addClass('r_changed');
-        $('.input-form__button_r').not(this).removeClass('r_changed');
 
         let svgGraph = document.querySelector(".result-graph").getSVGDocument();
         svgGraph.querySelector('.coordinate-text_minus-Rx').textContent = (-radius).toString();

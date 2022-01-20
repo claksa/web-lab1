@@ -35,7 +35,7 @@
     <text class="coordinate-text coordinate-text_plus-Ry" x="120" y="48" font-size="14">R</text>
 
     <!-- Triangle -->
-    <polygon class="svg-figure triangle-figure" points="76,110 110,110 110,143"
+    <polygon class="svg-figure triangle-figure" points="43,110 110,110 110,143"
              fill="blue" fill-opacity="0.25" stroke="darkblue" stroke-opacity="0.5"/>
 
     <!-- Rectangle -->

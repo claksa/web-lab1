@@ -49,6 +49,8 @@ td,th {
 
 .graph {
     position: relative;
+    text-align: center;
+    min-height: 220px;
     height: 100%;
     width: 100%;
     border: 2px solid #324ab2;
@@ -121,4 +123,6 @@ input:focus:invalid {
     padding: 0.3em;
 }
 
-/*TODO: стиль кнопок и таблицы с результатами*/
+.y_selected {
+    background-color: #324ab2;
+}

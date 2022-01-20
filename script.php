@@ -5,23 +5,28 @@ const X_MIN = -3;
 const y_values = array(-4, -3, -2, -1, 0, 1, 2, 3);
 const r_values = array(1, 2, 3, 4, 5);
 
-function isExist($arg) {
+function isExist($arg)
+{
     return isset($arg);
 }
 
-function checkFirstQuarter($x_arg, $y_arg, $r_arg){
-    return $x_arg <= 0 && $y_arg >= 0 && $x_arg >= (-1) * $r_arg && $y_arg <= $r_arg;
+function checkFirstQuarter($x_arg, $y_arg, $r_arg)
+{
+    return $x_arg <= 0 && $y_arg >= 0 && $x_arg >= -$r_arg && $y_arg <= $r_arg;
 }
 
-function checkSecondQuarter($x_arg, $y_arg, $r_arg) {
-    return $x_arg >= 0 && $y_arg >= 0 && sqrt($x_arg * $x_arg + $y_arg * $y_arg) <= $r_arg;
+function checkSecondQuarter($x_arg, $y_arg, $r_arg)
+{
+    return $x_arg >= 0 && $y_arg >= 0 && $x_arg * $x_arg + $y_arg * $y_arg <= $r_arg * $r_arg;
 }
 
-function checkThirdQuarter($x_arg, $y_arg, $r_arg) {
-    return $x_arg <= 0 && $y_arg <= 0 && $y_arg >= 2 * $x_arg - $r_arg;
+function checkThirdQuarter($x_arg, $y_arg, $r_arg)
+{
+    return $x_arg <= 0 && $y_arg <= 0 && 2 * $y_arg >= -$x_arg - $r_arg;
 }
 
-function checkQuarters($x_arg, $y_arg, $r_arg) {
+function checkQuarters($x_arg, $y_arg, $r_arg)
+{
     if (checkFirstQuarter($x_arg, $y_arg, $r_arg) || checkSecondQuarter($x_arg, $y_arg, $r_arg) || checkThirdQuarter($x_arg, $y_arg, $r_arg)) {
         return "входит в ОДЗ";
     } else {
@@ -29,15 +34,18 @@ function checkQuarters($x_arg, $y_arg, $r_arg) {
     }
 }
 
-function isCoordinatesExist($x_arg, $y_arg, $r_arg) {
+function isCoordinatesExist($x_arg, $y_arg, $r_arg)
+{
     return isExist($x_arg) && isExist($y_arg) && isExist($r_arg);
 }
 
-function isNumbers($x_arg, $y_arg, $r_arg) {
+function isNumbers($x_arg, $y_arg, $r_arg)
+{
     return is_numeric($x_arg) && is_numeric($y_arg) && is_numeric($r_arg);
 }
 
-function checkValues($x_arg, $y_arg, $r_arg) {
+function checkValues($x_arg, $y_arg, $r_arg)
+{
     return isCoordinatesExist($x_arg, $y_arg, $r_arg) && isNumbers($x_arg, $y_arg, $r_arg)
         && ($x_arg <= X_MAX && $x_arg >= X_MIN)
         && in_array($y_arg, y_values) && in_array($r_arg, r_values);
@@ -55,14 +63,14 @@ if (checkValues($x, $y, $radius)) {
     $workTime = round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"], 5);
 
 
-    $table_template ="<tr id='test'>";
+    $table_template = "<tr id='test'>";
     $table_template .= "<td>$x</td>";
     $table_template .= "<td>$y</td>";
     $table_template .= "<td>$radius</td>";
     $table_template .= "<td>$currentTime</td>";
     $table_template .= "<td>$workTime</td>";
     $table_template .= "<td>$status</td>";
-    $table_template.="</tr>";
+    $table_template .= "</tr>";
 
     echo $table_template;
 } else {
