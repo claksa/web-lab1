@@ -59,7 +59,7 @@ date_default_timezone_set($_POST['timezone']) * 60;
 
 if (checkValues($x, $y, $radius)) {
     $status = checkQuarters($x, $y, $radius);
-    $currentTime = date("H : i : s", time());
+    $currentTime = date("H:i:s", time());
     $workTime = round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"], 5);
 
 

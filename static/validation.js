@@ -21,8 +21,6 @@ $(document).ready(function () {
         element.onclick = function () {
             y = $(this).val();
             console.log(y);
-            $(this).addClass('y_selected');
-            $('.set_y').not(this).removeClass('y_selected');
         }
     }
 
