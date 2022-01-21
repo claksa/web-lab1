@@ -4,7 +4,7 @@ body {
     width: 100%;
 
     color: #333333;
-    background-color: #f8f8ff;
+    background-color: #E6E6FA;
 }
 
 .container {
@@ -55,7 +55,7 @@ td,th {
     width: 100%;
     border: 2px solid #324ab2;
     border-radius: 10px;
-    background-color: #f6fbfe;
+    background-color: #F5FFFA;
 }
 
 #canvas{
@@ -123,6 +123,63 @@ input:focus:invalid {
     padding: 0.3em;
 }
 
-.y_selected {
-    background-color: #324ab2;
+
+input[type=button] {
+    border-radius: 6px;
+    background-color: #F5FFFA;
+    color: black;
+    border: 2px solid #000080;
+    width: 40%;
+
 }
+
+
+input[type=button]:hover {
+    background-color: #000080;
+    color: #F5FFFA;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.form_button {
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #000080;
+    border: none;
+    /*box-shadow: 0 9px #999;*/
+}
+
+.form_button:hover {
+    background-color: #910f1e;
+}
+
+.form_button:active {
+    background-color: darkblue;
+    transform: translateY(4px);
+}
+
+input[type="number"] {
+    border: 1px solid #000000;
+    border-radius: 3px;
+    background: #ffffff;
+    outline: none;
+    width: 90%;
+    height: 100%;
+    color: #333333;
+    font-size: 11px;
+}
+
+input[type="number"]:focus {
+    color: #000000;
+    border: 2px solid #000080;
+    background-color: #d6d1eb;
+}
+
+#subbtn:hover {
+    background-color: #006400;
+}
+
