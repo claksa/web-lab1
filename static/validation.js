@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let canvas = $('#canvas');
 
-    const COEFF = 67;
+    const COEFF = 68;
     const AXIS = 110;
 
     const X_MAX = 5;
@@ -12,7 +12,7 @@ $(document).ready(function () {
     let y;
     let radius;
     let isValid = false;
-    let xField = document.getElementById("x_value");
+    const xField = document.getElementById("x_value");
 
     let value = $("#x_value").val().replace(',', '.');
     let array = Array.prototype.slice.call(document.getElementsByName("y_value"));
@@ -123,7 +123,7 @@ $(document).ready(function () {
                 nearestYValue = Y_VALUES[i];
             }
         }
-        drawPoint(COEFF / radius + AXIS, -(nearestYValue/ radius * COEFF - AXIS), 'red');
+        drawPoint(COEFF * x / radius + AXIS, -(nearestYValue/ radius * COEFF - AXIS), 'red');
         let ySelected = $('input[name="x_val"][value="' + nearestYValue.trim() + '"]');
         ySelected.trigger("click");
         $("#x_value").val();
@@ -171,6 +171,7 @@ $(document).ready(function () {
 
     $(".set_r").on("change", function () {
         radius = $(this).val();
+        let x = $('#x_value').val();
 
         let svgGraph = document.querySelector(".result-graph").getSVGDocument();
         svgGraph.querySelector('.coordinate-text_minus-Rx').textContent = (-radius).toString();
@@ -182,10 +183,10 @@ $(document).ready(function () {
         svgGraph.querySelector('.coordinate-text_plus-half-Rx').textContent = (radius / 2).toString();
         svgGraph.querySelector('.coordinate-text_plus-half-Ry').textContent = (radius / 2).toString();
 
-        redrawFromInput(xField,y,radius);
+        redrawFromInput(x,y,radius);
     });
 
-    $('.set_x').on('input', event => redrawFromInput(xField,y,radius));
-    $('.set_y').on('click', event => redrawFromInput(xField,y,radius));
+    $('.set_x').on('input', event => redrawFromInput(x,y,radius));
+    $('.set_y').on('click', event => redrawFromInput(x,y,radius));
 
 });
