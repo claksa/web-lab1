@@ -52,6 +52,11 @@ function checkValues($x_arg, $y_arg, $r_arg)
 }
 
 //main
+session_start();
+if (!isExist($_SESSION['table-raw'])) {
+    $_SESSION['table-raw'] = array();
+}
+
 $x = $_POST['x_value'];
 $y = $_POST['y_value'];
 $radius = $_POST['r_value'];
@@ -72,7 +77,10 @@ if (checkValues($x, $y, $radius)) {
     $table_template .= "<td>$status</td>";
     $table_template .= "</tr>";
 
-    echo $table_template;
+    $_SESSION['table-raw'][] = $table_template;
+
+    foreach ($_SESSION['table-raw'] as $table_row) echo $table_row;
+
 } else {
     http_response_code(400);
     return;

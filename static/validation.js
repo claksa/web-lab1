@@ -160,7 +160,7 @@ $(document).ready(function () {
                 $(".send_form").attr("disabled", false);
                 let result_style = document.getElementById('row').style;
                 result_style.display = 'table-row';
-                $("#receiver").append(data);
+                document.getElementById('receiver').innerHTML = data;
             },
             error: function () {
                 console.log("error");
