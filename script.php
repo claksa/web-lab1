@@ -12,7 +12,7 @@ function isExist($arg)
 
 function checkFirstQuarter($x_arg, $y_arg, $r_arg)
 {
-    return $x_arg <= 0 && $y_arg >= 0 && $x_arg >= -$r_arg && $y_arg <= $r_arg;
+    return $x_arg <= 0 && $y_arg >= 0 && $x_arg >= -$r_arg/2 && $y_arg <= $r_arg;
 }
 
 function checkSecondQuarter($x_arg, $y_arg, $r_arg)
