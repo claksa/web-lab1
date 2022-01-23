@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let canvas = $('#canvas');
 
-    const COEFF = 68;
+    const COEFF = 67;
     const AXIS = 110;
 
     const X_MAX = 5;
@@ -12,7 +12,7 @@ $(document).ready(function () {
     let y;
     let radius;
     let isValid = false;
-    const xField = document.getElementById("x_value");
+    let xField = document.getElementById("x_value");
 
     let value = $("#x_value").val().replace(',', '.');
     let array = Array.prototype.slice.call(document.getElementsByName("y_value"));
@@ -20,6 +20,7 @@ $(document).ready(function () {
     function select(element) {
         element.onclick = function () {
             y = $(this).val();
+            // redrawFromInput(xField,y,radius);
             console.log(y);
         }
     }
@@ -100,9 +101,9 @@ $(document).ready(function () {
     }
 
     function redrawFromInput(x, y, radius) {
-        let color = 'green';
+        let color = 'red';
         if (checkCoordinates(x, y, radius)) {
-            color = 'red';
+            color = 'green';
             console.log('checked');
         }
         drawPoint(x * COEFF / radius + AXIS, -(y / radius * COEFF - AXIS), color);
@@ -123,7 +124,11 @@ $(document).ready(function () {
                 nearestYValue = Y_VALUES[i];
             }
         }
-        drawPoint(COEFF * x / radius + AXIS, -(nearestYValue/ radius * COEFF - AXIS), 'red');
+        let color = 'red';
+        if (checkCoordinates(x,y,radius)) {
+            color = 'green';
+        }
+        drawPoint(COEFF * x / radius + AXIS, -(nearestYValue/ radius * COEFF - AXIS), color);
         let ySelected = $('input[name="x_val"][value="' + nearestYValue.trim() + '"]');
         ySelected.trigger("click");
         $("#x_value").val();
@@ -141,6 +146,7 @@ $(document).ready(function () {
         if (!isValid) {
             return;
         }
+
 
         $.ajax({
             type: "POST",
@@ -172,6 +178,7 @@ $(document).ready(function () {
     $(".set_r").on("change", function () {
         radius = $(this).val();
         let x = $('#x_value').val();
+        array.forEach(select);
 
         let svgGraph = document.querySelector(".result-graph").getSVGDocument();
         svgGraph.querySelector('.coordinate-text_minus-Rx').textContent = (-radius).toString();
@@ -186,7 +193,16 @@ $(document).ready(function () {
         redrawFromInput(x,y,radius);
     });
 
-    $('.set_x').on('input', event => redrawFromInput(x,y,radius));
-    $('.set_y').on('click', event => redrawFromInput(x,y,radius));
+    $('#x_value').on('change', function () {
+        let x = $('#x_value').val();
+        array.forEach(select);
+        redrawFromInput(x,y,radius);
+    })
+
+    $('.set_y').on('click', function (){
+        let x = $('#x_value').val();
+        redrawFromInput(x,y,radius);
+    })
+
 
 });
