@@ -56,6 +56,10 @@ $(document).ready(function () {
         return x <= 0 && y <= 0 && 2 * y >= -x - r;
     }
 
+    function checkFourthQuarter(x,y,r) {
+        return x > 0 && y < 0;
+    }
+
     function checkCoordinates(x, y, r) {
         return checkFirstQuarter(x, y, r) || checkSecondQuarter(x, y, r) || checkThirdQuarter(x, y, r);
     }
@@ -102,7 +106,7 @@ $(document).ready(function () {
 
     function redrawFromInput(x, y, radius) {
         let color = 'red';
-        if (checkCoordinates(x, y, radius)) {
+        if (checkCoordinates(x, y, radius) && !checkFourthQuarter(x,y,radius)) {
             color = 'green';
             console.log('checked');
         }
@@ -125,7 +129,7 @@ $(document).ready(function () {
             }
         }
         let color = 'red';
-        if (checkCoordinates(x,y,radius)) {
+        if (checkCoordinates(x,y,radius) && !checkFourthQuarter(x,y,radius)) {
             color = 'green';
         }
         drawPoint(COEFF * x / radius + AXIS, -(nearestYValue/ radius * COEFF - AXIS), color);
